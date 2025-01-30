@@ -7,6 +7,7 @@ dotenv.config();
 
 import dataFetcher from './schedulers/dataFetcher.js';
 
-cron.schedule('*/120 * * * * *', dataFetcher);
+cron.schedule('*/20 * * * * *', dataFetcher);
+
 
 console.log('Node-Cron project started.');

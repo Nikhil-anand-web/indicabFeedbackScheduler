@@ -15,12 +15,12 @@ export default async function getDuties(criteria,start,end) {
             "X-User-Id": loginResponse.data.userId,
             "X-Auth-Token": loginResponse.data.authToken,
         };
-    console.log(headers)
+  
         // Define the request body
         const requestBody = {
-            criteria: "upcoming",
-            start: "2025-01-22T00:00:00.000+05:30",
-            end: "2025-01-22T01:59:59.000+05:30",
+            criteria: criteria,
+            start: start,
+            end: end,
         };
 
         // Make the API request to get duties

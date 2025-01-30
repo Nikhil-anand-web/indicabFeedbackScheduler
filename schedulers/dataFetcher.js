@@ -5,7 +5,16 @@ import escapeJson from '../utils/escapeJson.js';
 const dataFetcher = async () => {
     try {
         const dutySchedulerCycleId = uuidv1();
-        const response = await getDuties("upcoming","2025-01-22T00:00:00.000+05:30","2025-01-22T01:59:59.000+05:30");
+        const lowerlt = new Date(Date.now() + 3 * 60 * 60 * 1000); // Add 3 hours
+        const formattedLowerlt = lowerlt.toISOString().replace("Z", "+05:30").replace(/\.\d{3}/, ".000");
+
+        const upperlt = new Date(Date.now() + 4 * 60 * 60 * 1000); // Add 4 hours
+        const formattedupperlt = upperlt.toISOString().replace("Z", "+05:30").replace(/\.\d{3}/, ".000");
+
+
+
+
+        const response = await getDuties("upcoming", formattedLowerlt, formattedupperlt);
         const dutiesArray = response.data;
         const insertQuery = `
             INSERT INTO dutySchedulerCycle (id, numberofdata, missed, tupplesCreated)
